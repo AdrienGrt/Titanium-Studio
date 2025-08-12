@@ -16,7 +16,7 @@ const nextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN', // Autorise les iframes du même domaine
+            value: 'ALLOWALL',
           },
           {
             key: 'Content-Security-Policy',
