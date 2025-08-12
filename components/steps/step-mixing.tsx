@@ -15,7 +15,7 @@ export function StepMixing({ data, onUpdate }: StepMixingProps) {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
           <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-          Souhaitez-vous faire mixer/masteriser vos morceaux ?
+          Souhaites-tu mixer ou masteriser ton morceau ?
         </h3>
         <RadioGroup 
           value={data.needMixing} 
@@ -31,7 +31,7 @@ export function StepMixing({ data, onUpdate }: StepMixingProps) {
           <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
             <RadioGroupItem value="no" id="mixing-no" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
             <Label htmlFor="mixing-no" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-              Non
+            Non, pas pour l'instant
             </Label>
           </div>
         </RadioGroup>
@@ -43,7 +43,7 @@ export function StepMixing({ data, onUpdate }: StepMixingProps) {
           <div className="space-y-4 animate-fadeIn">
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-              Type de mixage
+              Dis-nous en plus sur ton morceau, comment tu travailles ?
             </h3>
             <RadioGroup 
               value={data.mixingType} 
@@ -53,19 +53,19 @@ export function StepMixing({ data, onUpdate }: StepMixingProps) {
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
                 <RadioGroupItem value="stereo" id="mix-stereo" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
                 <Label htmlFor="mix-stereo" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  Mix stéréo (1 piste)
+                Mix sur une seule piste (instrumentale YouTube ou une piste unique)
                 </Label>
               </div>
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
                 <RadioGroupItem value="multitrack" id="mix-multitrack" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
                 <Label htmlFor="mix-multitrack" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  Mix multipistes
+                Mix avec les pistes séparées (batterie, basse, piano, voix...)
                 </Label>
               </div>
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
                 <RadioGroupItem value="master-only" id="mix-master" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
                 <Label htmlFor="mix-master" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  Master seul
+                J'ai déjà mixé, je veux juste masteriser
                 </Label>
               </div>
             </RadioGroup>
@@ -75,7 +75,7 @@ export function StepMixing({ data, onUpdate }: StepMixingProps) {
           <div className="space-y-4 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-              Nombre de morceaux à mixer
+              Combien de mixages souhaites-tu ?
             </h3>
             <RadioGroup 
               value={data.mixCount} 
@@ -85,21 +85,16 @@ export function StepMixing({ data, onUpdate }: StepMixingProps) {
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
                 <RadioGroupItem value="1" id="mix-1" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
                 <Label htmlFor="mix-1" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  1 morceau
+                  1 
                 </Label>
               </div>
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
                 <RadioGroupItem value="3" id="mix-3" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
                 <Label htmlFor="mix-3" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  3 morceaux
+                 Plusieurs
                 </Label>
               </div>
-              <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
-                <RadioGroupItem value="5" id="mix-5" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
-                <Label htmlFor="mix-5" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  5 morceaux
-                </Label>
-              </div>
+              
             </RadioGroup>
           </div>
         </>

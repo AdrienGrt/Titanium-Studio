@@ -3,17 +3,219 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
 import { Phone, Mail, RotateCcw, Star, CheckCircle2, Sparkles, Headphones } from "lucide-react"
 import type { SimulatorData } from "@/types/simulator"
 import { getRecommendedOffers } from "@/lib/simulator-engine"
+import { offers } from "@/data/offers"
 
 interface ResultsProps {
   data: SimulatorData
   onReset: () => void
 }
 
+// Composant RecapSection
+function RecapSection({ data }: { data: SimulatorData }) {
+  // Fonction pour trouver le prix d'un service selon les tags générés
+  const findServicePrice = (neededTags: string[]) => {
+    return offers.find(offer => 
+      neededTags.every(tag => offer.tags.includes(tag))
+    )
+  }
+
+  // Analyser les choix de l'utilisateur et trouver les prix correspondants
+  const getPriceDetails = () => {
+    const details = []
+    
+    // 1. Analyse des besoins instrumentaux
+    if (data.beatmaking?.needBeats === "yes") {
+      const beatCount = data.beatmaking.beatCount || "1"
+      const beatTypes = data.beatmaking.beatTypes || ["custom"]
+      
+      beatTypes.forEach(beatType => {
+        const tags = ["need:beats", `beats:${beatCount}`, `beat-type:${beatType}`]
+        const service = findServicePrice(tags)
+        
+        if (service) {
+          details.push({
+            category: "Instrumental",
+            service: service.title,
+            price: service.price,
+            description: service.description,
+            choice: `${beatCount} ${beatType === "custom" ? "sur mesure" : "remake"}`
+          })
+        }
+      })
+    }
+
+    // 2. Analyse des besoins d'écriture
+    if (data.writing?.needWriting && data.writing.needWriting !== "no") {
+      const tags = ["need:writing", `writing:${data.writing.needWriting}`]
+      const service = findServicePrice(tags)
+      
+      if (service) {
+        details.push({
+          category: "Écriture",
+          service: service.title,
+          price: service.price,
+          description: service.description,
+          choice: data.writing.needWriting === "improvement" ? "Perfectionnement" : "Écriture complète"
+        })
+      }
+    }
+
+    // 3. Analyse des besoins d'enregistrement
+    if (data.recording?.needRecording === "yes") {
+      const duration = data.recording.duration || "4h"
+      const trackCount = data.recording.trackCount || "1"
+      
+      const tags = ["need:recording", `duration:${duration}`]
+      const service = findServicePrice(tags)
+      
+      if (service) {
+        details.push({
+          category: "Enregistrement",
+          service: service.title,
+          price: service.price,
+          description: service.description,
+          choice: `${duration} - ${trackCount} piste(s)`
+        })
+      }
+    }
+
+    // 4. Analyse des besoins de mixage
+    if (data.mixing?.needMixing === "yes") {
+      const mixingType = data.mixing.mixingType || "stereo"
+      const mixCount = data.mixing.mixCount || "1"
+      
+      const tags = ["need:mixing", `mix-type:${mixingType}`]
+      const service = findServicePrice(tags)
+      
+      if (service) {
+        details.push({
+          category: "Mixage",
+          service: service.title,
+          price: service.price,
+          description: service.description,
+          choice: `${mixingType === "stereo" ? "Stéréo" : "Multipistes"} - ${mixCount} mix`
+        })
+      }
+    }
+
+    // 5. Analyse des besoins vidéo
+    if (data.video?.needVideo === "yes") {
+      details.push({
+        category: "Vidéo",
+        service: "Clip vidéo professionnel",
+        price: "Sur devis",
+        description: "Production vidéo selon votre budget",
+        choice: `Budget: ${data.video.videoBudget || "À définir"}`
+      })
+    }
+
+    // 6. Analyse des besoins promotion
+    if (data.promotion?.promotionTypes && data.promotion.promotionTypes.length > 0 && !data.promotion.promotionTypes.includes("none")) {
+      details.push({
+        category: "Promotion", 
+        service: "Stratégie promotionnelle",
+        price: "Sur devis",
+        description: "Accompagnement marketing personnalisé",
+        choice: data.promotion.promotionTypes.join(", ")
+      })
+    }
+
+    return details
+  }
+
+  const priceDetails = getPriceDetails()
+  const totalPrice = priceDetails.reduce((sum, item) => {
+    const price = item.price.replace('€', '').replace('Sur devis', '0')
+    return sum + parseInt(price || '0')
+  }, 0)
+
+  if (priceDetails.length === 0) return null
+
+  return (
+    <Card className="bg-black/60 backdrop-blur-xl border border-white/10 mb-8">
+      <CardHeader>
+        <CardTitle className="text-white text-xl flex items-center gap-2">
+          <CheckCircle2 className="w-5 h-5 text-red-500" />
+          Récapitulatif de votre projet
+        </CardTitle>
+        <p className="text-gray-400 text-sm">
+          Détail des services sélectionnés avec les prix unitaires correspondants
+        </p>
+      </CardHeader>
+      
+      <CardContent className="space-y-4">
+        {/* Liste des services */}
+        <div className="space-y-3">
+          {priceDetails.map((detail, index) => (
+            <div key={index} className="p-4 bg-white/5 rounded-lg border border-white/10 hover:border-red-600/30 transition-colors">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Badge variant="outline" className="text-xs text-red-400 border-red-400/50">
+                      {detail.category}
+                    </Badge>
+                  </div>
+                  <h4 className="text-white font-medium text-lg">{detail.service}</h4>
+                  <p className="text-gray-400 text-sm mb-2">{detail.description}</p>
+                  <p className="text-red-300 text-sm font-medium">
+                    Votre choix: {detail.choice}
+                  </p>
+                </div>
+                <div className="text-red-400 font-bold text-xl ml-4">
+                  {detail.price}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Séparateur */}
+        <Separator className="bg-white/10" />
+        
+        {/* Total */}
+        {totalPrice > 0 && (
+          <div className="flex items-center justify-between p-4 bg-red-600/10 rounded-lg border border-red-600/30">
+            <div>
+              <h3 className="text-white font-bold text-lg">Total services individuels</h3>
+              <p className="text-red-400 text-sm">Prix si achetés séparément</p>
+            </div>
+            <div className="text-red-400 font-bold text-2xl">
+              {totalPrice}€
+            </div>
+          </div>
+        )}
+        
+        {/* Message d'économie pour les packs */}
+        <div className="bg-gradient-to-r from-green-600/10 to-emerald-600/10 border border-green-600/30 rounded-lg p-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="w-4 h-4 text-green-400" />
+            <span className="text-green-400 font-medium text-sm">💡 Conseil d'expert</span>
+          </div>
+          <p className="text-green-300 text-sm leading-relaxed">
+            {totalPrice > 530 ? (
+              <>
+                <strong>Économisez jusqu'à {totalPrice - 530}€</strong> avec nos packs SINGLE TITANIUM ou DIAMOND ! 
+                En plus des services, vous bénéficiez d'un accompagnement personnalisé et d'une coordination optimale de votre projet.
+              </>
+            ) : (
+              <>
+                Nos packs SINGLE TITANIUM et DIAMOND incluent un accompagnement personnalisé 
+                et une coordination optimale de votre projet pour un résultat professionnel garanti !
+              </>
+            )}
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
 export function Results({ data, onReset }: ResultsProps) {
-  const offers = getRecommendedOffers(data)
+  const recommendedOffers = getRecommendedOffers(data)
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
@@ -41,9 +243,12 @@ export function Results({ data, onReset }: ResultsProps) {
         </Button>
       </div>
 
+      {/* NOUVEAU : Section récapitulatif */}
+      <RecapSection data={data} />
+
       {/* Grille des offres */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {offers.map((offer, index) => (
+        {recommendedOffers.map((offer, index) => (
           <div key={index} className="relative group">
             {/* Effet de glow au hover */}
             <div className="absolute -inset-1 bg-gradient-to-br from-red-600/20 to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 pointer-events-none" />

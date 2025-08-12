@@ -16,13 +16,13 @@ import { Results } from "./results"
 import type { SimulatorData } from "@/types/simulator"
 
 const STEPS = [
-  { id: "profile", title: "Profil & Accompagnement", component: StepProfile, icon: Music },
-  { id: "beatmaking", title: "Beatmaking / Instrumental", component: StepBeatmaking, icon: Disc },
-  { id: "writing", title: "Écriture & Topline", component: StepWriting, icon: Edit3 },
-  { id: "recording", title: "Enregistrement", component: StepRecording, icon: Mic2 },
-  { id: "mixing", title: "Mixage / Mastering", component: StepMixing, icon: SlidersHorizontal },
-  { id: "video", title: "Clip Vidéo", component: StepVideo, icon: Video },
-  { id: "promotion", title: "Promotion", component: StepPromotion, icon: Megaphone },
+  { id: "profile", title: "IDENTIFICATION DE LA CIBLE", component: StepProfile, icon: Music },
+  { id: "beatmaking", title: "INSTRUMENTAL / BEATMAKING", component: StepBeatmaking, icon: Disc },
+  { id: "writing", title: "ÉCRITURE / TOPLINE", component: StepWriting, icon: Edit3 },
+  { id: "recording", title: "ENREGISTREMENT STUDIO", component: StepRecording, icon: Mic2 },
+  { id: "mixing", title: "MIXAGE / MASTERING", component: StepMixing, icon: SlidersHorizontal },
+  { id: "video", title: "CLIP VIDÉO", component: StepVideo, icon: Video },
+  { id: "promotion", title: "PROMOTION / STRATÉGIE ARTISTIQUE", component: StepPromotion, icon: Megaphone },
 ]
 
 export function SimulatorWizard() {

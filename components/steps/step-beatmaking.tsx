@@ -16,7 +16,7 @@ export function StepBeatmaking({ data, onUpdate }: StepBeatmakingProps) {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
           <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-          Avez-vous besoin d'instrumentales ?
+          As-tu besoin d'une instru ou d'une composition ?
         </h3>
         <RadioGroup 
           value={data.needBeats} 
@@ -32,7 +32,7 @@ export function StepBeatmaking({ data, onUpdate }: StepBeatmakingProps) {
           <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
             <RadioGroupItem value="no" id="beats-no" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
             <Label htmlFor="beats-no" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-              Non
+            Non, pas pour l'instant
             </Label>
           </div>
         </RadioGroup>
@@ -44,7 +44,7 @@ export function StepBeatmaking({ data, onUpdate }: StepBeatmakingProps) {
           <div className="space-y-4 animate-fadeIn">
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-              Combien d'instrumentales ?
+              Combien d'instrumentaux veux-tu ?
             </h3>
             <RadioGroup 
               value={data.beatCount} 
@@ -54,21 +54,16 @@ export function StepBeatmaking({ data, onUpdate }: StepBeatmakingProps) {
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
                 <RadioGroupItem value="1" id="beat-1" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
                 <Label htmlFor="beat-1" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  1 instrumental
+                  1 
                 </Label>
               </div>
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
                 <RadioGroupItem value="3" id="beat-3" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
                 <Label htmlFor="beat-3" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  3 instrumentales
+                Plusieurs
                 </Label>
               </div>
-              <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
-                <RadioGroupItem value="5" id="beat-5" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
-                <Label htmlFor="beat-5" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  5 instrumentales
-                </Label>
-              </div>
+              
             </RadioGroup>
           </div>
 
@@ -76,7 +71,7 @@ export function StepBeatmaking({ data, onUpdate }: StepBeatmakingProps) {
           <div className="space-y-4 animate-fadeIn">
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-              Type d'instrumental
+              Tu souhaites quel type d'instrumental ?
             </h3>
             <div className="space-y-3">
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
@@ -94,7 +89,7 @@ export function StepBeatmaking({ data, onUpdate }: StepBeatmakingProps) {
                   className="border-white/30 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600 data-[state=checked]:text-white focus:ring-red-500 focus:ring-offset-0"
                 />
                 <Label htmlFor="remake" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  Remake (reproduction d'un morceau existant)
+                Un remake d'instru connue
                 </Label>
               </div>
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
@@ -112,7 +107,7 @@ export function StepBeatmaking({ data, onUpdate }: StepBeatmakingProps) {
                   className="border-white/30 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600 data-[state=checked]:text-white focus:ring-red-500 focus:ring-offset-0"
                 />
                 <Label htmlFor="custom" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  Sur mesure (création originale)
+                Une prod exclusive sur mesure
                 </Label>
               </div>
               <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
@@ -130,7 +125,7 @@ export function StepBeatmaking({ data, onUpdate }: StepBeatmakingProps) {
                   className="border-white/30 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600 data-[state=checked]:text-white focus:ring-red-500 focus:ring-offset-0"
                 />
                 <Label htmlFor="arrangement" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-                  Arrangement
+                Des arrangements sur une instru que j'ai déjà
                 </Label>
               </div>
             </div>

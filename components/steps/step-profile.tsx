@@ -15,8 +15,7 @@ export function StepProfile({ data, onUpdate }: StepProfileProps) {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
           <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-          Type de profil
-        </h3>
+          Es-tu artiste ou professionnel ?        </h3>
         <RadioGroup 
           value={data.profileType} 
           onValueChange={(value) => onUpdate({ profileType: value })}
@@ -37,7 +36,7 @@ export function StepProfile({ data, onUpdate }: StepProfileProps) {
           <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
             <RadioGroupItem value="manager" id="manager" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
             <Label htmlFor="manager" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-              Manager / Label
+              Manager / Producteur
             </Label>
           </div>
         </RadioGroup>
@@ -47,7 +46,7 @@ export function StepProfile({ data, onUpdate }: StepProfileProps) {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
           <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-          Niveau d'expérience
+          Quel est ton niveau ?
         </h3>
         <RadioGroup 
           value={data.level} 
@@ -57,19 +56,18 @@ export function StepProfile({ data, onUpdate }: StepProfileProps) {
           <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
             <RadioGroupItem value="beginner" id="beginner" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
             <Label htmlFor="beginner" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-              Débutant
+            Débutant : c'est ma première fois en studio
             </Label>
           </div>
           <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
             <RadioGroupItem value="intermediate" id="intermediate" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
             <Label htmlFor="intermediate" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-              Intermédiaire
-            </Label>
+            Intermédiaire : j'ai déjà enregistré plusieurs morceaux            </Label>
           </div>
           <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
             <RadioGroupItem value="pro" id="pro" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
             <Label htmlFor="pro" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-              Professionnel
+            Professionnel : c'est mon métier
             </Label>
           </div>
         </RadioGroup>
@@ -79,7 +77,7 @@ export function StepProfile({ data, onUpdate }: StepProfileProps) {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
           <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-          Type d'accompagnement souhaité
+          Quel type d'accompagnement recherches-tu ?
         </h3>
         <RadioGroup 
           value={data.support} 
@@ -89,19 +87,20 @@ export function StepProfile({ data, onUpdate }: StepProfileProps) {
           <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
             <RadioGroupItem value="autonomous" id="autonomous" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
             <Label htmlFor="autonomous" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-              Autonome
+            Autonome : je sais ce que je veux, j'avance seul
             </Label>
           </div>
           <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
             <RadioGroupItem value="coached" id="coached" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
             <Label htmlFor="coached" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-              Coaché
+            Accompagnement simple : j'aimerais un peu de coaching
             </Label>
           </div>
           <div className="group relative flex items-center space-x-3 p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-red-600/10 hover:border-red-600/30 transition-all duration-300 cursor-pointer">
             <RadioGroupItem value="guided" id="guided" className="border-white/30 text-red-500 focus:ring-red-500 focus:ring-offset-0" />
             <Label htmlFor="guided" className="text-gray-200 group-hover:text-white transition-colors cursor-pointer flex-1">
-              Guidé à 100%
+            Accompagnement + : j'aimerais être guidé à chaque étape
+
             </Label>
           </div>
         </RadioGroup>
