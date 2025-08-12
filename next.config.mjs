@@ -9,6 +9,23 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN', // Autorise les iframes du même domaine
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' *;", // Autorise tous les domaines parents
+          },
+        ],
+      },
+    ]
+  },
 }
 
 export default nextConfig
