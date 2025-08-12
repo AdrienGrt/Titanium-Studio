@@ -14,13 +14,11 @@ const nextConfig = {
       {
         source: '/(.*)',
         headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'ALLOWALL',
-          },
+          // Supprimez X-Frame-Options complètement pour autoriser tous les iframes
+          // OU utilisez une valeur valide comme 'SAMEORIGIN'
           {
             key: 'Content-Security-Policy',
-            value: "frame-ancestors 'self' *;", // Autorise tous les domaines parents
+            value: "frame-ancestors *;", // Autorise TOUS les domaines parents
           },
         ],
       },
