@@ -15,7 +15,7 @@ export function StepProfile({ data, onUpdate }: StepProfileProps) {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
           <span className="w-1 h-6 bg-red-500 rounded-full"></span>
-          Es-tu artiste ou professionnel ?        </h3>
+          Vous êtes ?        </h3>
         <RadioGroup 
           value={data.profileType} 
           onValueChange={(value) => onUpdate({ profileType: value })}
