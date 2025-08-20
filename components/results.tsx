@@ -151,24 +151,35 @@ function RecapSection({ data }: { data: SimulatorData }) {
         {/* Liste des services */}
         <div className="space-y-3">
           {priceDetails.map((detail, index) => (
-            <div key={index} className="p-4 bg-white/5 rounded-lg border border-white/10 hover:border-red-600/30 transition-colors">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Badge variant="outline" className="text-xs text-red-400 border-red-400/50">
-                      {detail.category}
-                    </Badge>
+            <div key={index}>
+              <div className="p-4 bg-white/5 rounded-lg border border-white/10 hover:border-red-600/30 transition-colors">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge variant="outline" className="text-xs text-red-400 border-red-400/50">
+                        {detail.category}
+                      </Badge>
+                    </div>
+                    <h4 className="text-white font-medium text-lg">{detail.service}</h4>
+                    <p className="text-gray-400 text-sm mb-2">{detail.description}</p>
+                    <p className="text-red-300 text-sm font-medium">
+                      Votre choix: {detail.choice}
+                    </p>
                   </div>
-                  <h4 className="text-white font-medium text-lg">{detail.service}</h4>
-                  <p className="text-gray-400 text-sm mb-2">{detail.description}</p>
-                  <p className="text-red-300 text-sm font-medium">
-                    Votre choix: {detail.choice}
-                  </p>
-                </div>
-                <div className="text-red-400 font-bold text-xl ml-4">
-                  {detail.price}
+                  <div className="text-red-400 font-bold text-xl ml-4">
+                    {detail.price}
+                  </div>
                 </div>
               </div>
+              
+              {/* Signe + entre les services */}
+              {index < priceDetails.length - 1 && (
+                <div className="flex justify-center py-2">
+                  <div className="bg-white/10 rounded-full w-8 h-8 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">+</span>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -178,12 +189,12 @@ function RecapSection({ data }: { data: SimulatorData }) {
         
         {/* Total */}
         {totalPrice > 0 && (
-          <div className="flex items-center justify-between p-4 bg-red-600/10 rounded-lg border border-red-600/30">
+          <div className="flex items-center justify-between p-6 bg-red-600/10 rounded-lg border border-red-600/30">
             <div>
-              <h3 className="text-white font-bold text-lg">Total services individuels</h3>
-              <p className="text-red-400 text-sm">Prix si achetés séparément</p>
+              <h3 className="text-white font-bold text-2xl">Total services individuels</h3>
+              <p className="text-red-400 text-base mt-1">Prix si achetés séparément</p>
             </div>
-            <div className="text-red-400 font-bold text-2xl">
+            <div className="text-red-400 font-black text-4xl">
               {totalPrice}€
             </div>
           </div>

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { ChevronLeft, ChevronRight, Music, Mic2, Edit3, Disc, SlidersHorizontal, Video, Megaphone } from "lucide-react"
+import { ChevronLeft, ChevronRight, Music, Mic2, Edit3, Disc, SlidersHorizontal, Video, Megaphone, User } from "lucide-react"
 import { StepProfile } from "./steps/step-profile"
 import { StepBeatmaking } from "./steps/step-beatmaking"
 import { StepWriting } from "./steps/step-writing"
@@ -12,6 +12,7 @@ import { StepRecording } from "./steps/step-recording"
 import { StepMixing } from "./steps/step-mixing"
 import { StepVideo } from "./steps/step-video"
 import { StepPromotion } from "./steps/step-promotion"
+import { StepContact } from "./steps/step-contact"
 import { Results } from "./results"
 import type { SimulatorData } from "@/types/simulator"
 
@@ -23,6 +24,7 @@ const STEPS = [
   { id: "mixing", title: "MIXAGE / MASTERING", component: StepMixing, icon: SlidersHorizontal },
   { id: "video", title: "CLIP VIDÉO", component: StepVideo, icon: Video },
   { id: "promotion", title: "PROMOTION / STRATÉGIE ARTISTIQUE", component: StepPromotion, icon: Megaphone },
+  { id: "contact", title: "VOS COORDONNÉES", component: StepContact, icon: User },
 ]
 
 export function SimulatorWizard() {
@@ -35,6 +37,7 @@ export function SimulatorWizard() {
     mixing: {},
     video: {},
     promotion: {},
+    contact: {},
     tags: [],
   })
   const [showResults, setShowResults] = useState(false)
@@ -47,11 +50,24 @@ export function SimulatorWizard() {
     }))
   }
 
+  // Validation des champs requis pour l'étape contact
+  const isContactStepValid = () => {
+    if (currentStep !== STEPS.length - 1) return true // Pas l'étape contact
+    
+    const contactData = data.contact
+    return contactData?.name && contactData?.email && 
+           contactData.name.trim() !== "" && 
+           contactData.email.trim() !== "" &&
+           /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactData.email) // Validation email basique
+  }
+
   const nextStep = () => {
     if (currentStep < STEPS.length - 1) {
       setCurrentStep(currentStep + 1)
     } else {
-      setShowResults(true)
+      if (isContactStepValid()) {
+        setShowResults(true)
+      }
     }
   }
 
@@ -72,6 +88,7 @@ export function SimulatorWizard() {
       mixing: {},
       video: {},
       promotion: {},
+      contact: {},
       tags: [],
     })
   }
@@ -83,6 +100,8 @@ export function SimulatorWizard() {
   const CurrentStepComponent = STEPS[currentStep].component
   const CurrentIcon = STEPS[currentStep].icon
   const progress = ((currentStep + 1) / STEPS.length) * 100
+  const isLastStep = currentStep === STEPS.length - 1
+  const canProceed = isContactStepValid()
 
   return (
     <div className="relative">
@@ -153,6 +172,16 @@ export function SimulatorWizard() {
             />
           </div>
 
+          {/* Message de validation pour l'étape contact */}
+          {isLastStep && !canProceed && (
+            <div className="bg-red-600/10 border border-red-600/30 rounded-lg p-4">
+              <div className="flex items-center gap-2 text-red-400 text-sm">
+                <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                Veuillez remplir les champs obligatoires (nom et email valide)
+              </div>
+            </div>
+          )}
+
           {/* Navigation buttons avec nouveau style */}
           <div className="flex justify-between items-center pt-4">
             <Button
@@ -175,6 +204,7 @@ export function SimulatorWizard() {
 
             <Button 
               onClick={nextStep} 
+              disabled={isLastStep && !canProceed}
               className={`
                 group relative px-8 py-3 
                 bg-gradient-to-r from-red-600 to-red-700 
@@ -185,10 +215,12 @@ export function SimulatorWizard() {
                 hover:shadow-xl hover:shadow-red-600/30
                 hover:scale-105
                 transition-all duration-300
+                disabled:opacity-50 disabled:cursor-not-allowed
+                disabled:hover:scale-100
               `}
             >
               <span className="relative z-10">
-                {currentStep === STEPS.length - 1 ? "Voir mes offres" : "Suivant"}
+                {isLastStep ? "Voir mes offres" : "Suivant"}
               </span>
               <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               

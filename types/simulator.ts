@@ -30,6 +30,13 @@ export interface SimulatorData {
   promotion: {
     promotionTypes?: string[]
   }
+  contact: {
+    name?: string
+    email?: string
+    phone?: string
+    artistName?: string
+    message?: string
+  }
   tags: string[]
 }
 
