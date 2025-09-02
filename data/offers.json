@@ -3,13 +3,12 @@
     "id": "single-titanium",
     "title": "SINGLE TITANIUM",
     "price": "530€",
-    "description": "Pack complet pour créer votre single professionnel avec accompagnement personnalisé",
+    "description": "Un pack solide et puissant, parfait pour un artiste autonome qui a déjà ses textes",
     "includes": [
-      "1 instrumental sur mesure",
-      "Enregistrement studio (4h)",
-      "Mix & mastering professionnel",
-      "Coaching artistique",
-      "Pochette digitale"
+      "1 composition exclusive (270€)",
+      "Mix & mastering professionnel (170€)",
+      "Enregistrement studio 2h (90€)",
+      "Heures supplémentaires : 45€/h"
     ],
     "tags": [
       "need:beats",
@@ -19,7 +18,7 @@
       "tracks:1",
       "need:mixing",
       "level:intermediate",
-      "support:coached"
+      "support:autonomous"
     ],
     "category": "pack"
   },
@@ -27,15 +26,13 @@
     "id": "single-diamond",
     "title": "SINGLE DIAMOND",
     "price": "850€",
-    "description": "Pack premium tout inclus pour un single de qualité professionnelle",
+    "description": "Pack haut de gamme avec accompagnement complet : composition, écriture, coaching, enregistrement et mix/master",
     "includes": [
-      "1 instrumental sur mesure premium",
-      "Enregistrement studio (8h)",
-      "Mix & mastering premium",
-      "Coaching complet",
-      "Clip vidéo simple",
-      "Pochette + visuels promo",
-      "Distribution digitale"
+      "1 composition exclusive (270€)",
+      "Écriture/Topline + Coaching 4h (320€)",
+      "Mix & mastering professionnel (170€)",
+      "Enregistrement studio 2h (90€)",
+      "Heures supplémentaires : 45€/h"
     ],
     "tags": [
       "need:beats",
@@ -43,111 +40,245 @@
       "beat-type:custom",
       "need:recording",
       "tracks:1",
-      "duration:8h",
       "need:mixing",
-      "need:video",
-      "need:promotion",
+      "need:writing",
       "level:pro",
-      "support:guided"
+      "support:coached"
     ],
     "category": "pack"
   },
   {
     "id": "beats-custom-1",
-    "title": "Instrumental Sur Mesure",
-    "price": "150€",
-    "description": "Création d'un instrumental original adapté à votre style",
-    "includes": ["1 instrumental sur mesure", "Stems séparées", "Révisions incluses", "Droits d'exploitation"],
+    "title": "Composition Exclusive Sur Mesure",
+    "price": "300€",
+    "description": "Prod exclusive sur mesure, unique et adaptée à ton univers",
+    "includes": ["1 composition exclusive", "Stems séparées", "Révisions incluses", "Droits d'exploitation"],
     "tags": ["need:beats", "beats:1", "beat-type:custom"],
     "category": "beatmaking"
   },
   {
     "id": "beats-custom-3",
-    "title": "Pack 3 Instrumentales",
-    "price": "400€",
-    "description": "3 instrumentales sur mesure pour développer votre projet",
-    "includes": ["3 instrumentales sur mesure", "Stems séparées", "Révisions incluses", "Droits d'exploitation"],
+    "title": "Pack 3 Compositions Exclusives",
+    "price": "840€",
+    "description": "3 compositions exclusives sur mesure pour développer votre projet",
+    "includes": ["3 compositions exclusives", "Stems séparées", "Révisions incluses", "Droits d'exploitation"],
     "tags": ["need:beats", "beats:3", "beat-type:custom"],
+    "category": "beatmaking"
+  },
+  {
+    "id": "beats-custom-5",
+    "title": "Pack 5 Compositions Exclusives",
+    "price": "1350€",
+    "description": "5 compositions exclusives sur mesure pour un projet complet",
+    "includes": ["5 compositions exclusives", "Stems séparées", "Révisions incluses", "Droits d'exploitation"],
+    "tags": ["need:beats", "beats:5", "beat-type:custom"],
     "category": "beatmaking"
   },
   {
     "id": "remake-1",
     "title": "Remake Instrumental",
-    "price": "80€",
-    "description": "Reproduction fidèle d'un instrumental existant",
-    "includes": ["1 remake instrumental", "Qualité studio", "Stems disponibles en option"],
+    "price": "250€",
+    "description": "Reproduction fidèle ou revisitée d'une prod existante",
+    "includes": ["1 remake instrumental", "Qualité studio", "Stems disponibles"],
     "tags": ["need:beats", "beats:1", "beat-type:remake"],
     "category": "beatmaking"
   },
   {
-    "id": "recording-4h",
-    "title": "Session Enregistrement 4h",
-    "price": "200€",
-    "description": "Session d'enregistrement de 4 heures en studio professionnel",
-    "includes": ["4h de studio", "Ingénieur du son", "Prise de voix professionnelle", "Fichiers bruts"],
-    "tags": ["need:recording", "duration:4h", "tracks:1", "tracks:3"],
+    "id": "remake-3",
+    "title": "Pack 3 Remakes",
+    "price": "700€",
+    "description": "3 reproductions fidèles ou revisitées de prods existantes",
+    "includes": ["3 remakes instrumentaux", "Qualité studio", "Stems disponibles"],
+    "tags": ["need:beats", "beats:3", "beat-type:remake"],
+    "category": "beatmaking"
+  },
+  {
+    "id": "remake-5",
+    "title": "Pack 5 Remakes",
+    "price": "1100€",
+    "description": "5 reproductions fidèles ou revisitées de prods existantes",
+    "includes": ["5 remakes instrumentaux", "Qualité studio", "Stems disponibles"],
+    "tags": ["need:beats", "beats:5", "beat-type:remake"],
+    "category": "beatmaking"
+  },
+  {
+    "id": "arrangement",
+    "title": "Arrangement Musical",
+    "price": "À partir de 150€",
+    "description": "Optimisation ou restructuration musicale de ton morceau",
+    "includes": ["Analyse du morceau", "Restructuration", "Optimisation musicale", "Révisions incluses"],
+    "tags": ["need:beats", "beat-type:arrangement"],
+    "category": "beatmaking"
+  },
+  {
+    "id": "recording-day-1h",
+    "title": "Enregistrement Jour - 1h",
+    "price": "48€",
+    "description": "Session d'enregistrement 1h en journée (9h-20h)",
+    "includes": ["1h de studio jour", "Ingénieur du son", "Prise de voix professionnelle", "Fichiers bruts"],
+    "tags": ["need:recording", "duration:1h", "time:day"],
     "category": "recording"
   },
   {
-    "id": "recording-8h",
-    "title": "Session Enregistrement 8h",
+    "id": "recording-day-4h",
+    "title": "Enregistrement Jour - 4h",
+    "price": "180€",
+    "description": "Session d'enregistrement 4h en journée - Idéal pour poser avec énergie",
+    "includes": ["4h de studio jour", "Ingénieur du son", "Prise de voix professionnelle", "Fichiers bruts"],
+    "tags": ["need:recording", "duration:4h", "time:day", "tracks:1", "tracks:3"],
+    "category": "recording"
+  },
+  {
+    "id": "recording-day-8h",
+    "title": "Enregistrement Jour - 8h",
     "price": "350€",
-    "description": "Session d'enregistrement de 8 heures pour projets plus ambitieux",
+    "description": "Session d'enregistrement 8h en journée pour projets ambitieux",
     "includes": [
-      "8h de studio",
+      "8h de studio jour",
       "Ingénieur du son",
       "Prise de voix professionnelle",
       "Fichiers bruts",
       "Pause déjeuner incluse"
     ],
-    "tags": ["need:recording", "duration:8h", "tracks:3", "tracks:5"],
+    "tags": ["need:recording", "duration:8h", "time:day", "tracks:3", "tracks:5"],
     "category": "recording"
   },
   {
-    "id": "mix-stereo-1",
-    "title": "Mix Stéréo",
+    "id": "recording-night-1h",
+    "title": "Enregistrement Nuit - 1h",
+    "price": "60€",
+    "description": "Session d'enregistrement 1h nocturne (20h-9h) - Ambiance inspirée",
+    "includes": ["1h de studio nuit", "Ingénieur du son", "Prise de voix professionnelle", "Fichiers bruts"],
+    "tags": ["need:recording", "duration:1h", "time:night"],
+    "category": "recording"
+  },
+  {
+    "id": "recording-night-4h",
+    "title": "Enregistrement Nuit - 4h",
+    "price": "230€",
+    "description": "Session d'enregistrement 4h nocturne - Ambiance nocturne pour vibes inspirées",
+    "includes": ["4h de studio nuit", "Ingénieur du son", "Prise de voix professionnelle", "Fichiers bruts"],
+    "tags": ["need:recording", "duration:4h", "time:night", "tracks:1", "tracks:3"],
+    "category": "recording"
+  },
+  {
+    "id": "recording-night-8h",
+    "title": "Enregistrement Nuit - 8h",
+    "price": "450€",
+    "description": "Session d'enregistrement 8h nocturne pour projets ambitieux",
+    "includes": [
+      "8h de studio nuit",
+      "Ingénieur du son",
+      "Prise de voix professionnelle",
+      "Fichiers bruts",
+      "Pause repas incluse"
+    ],
+    "tags": ["need:recording", "duration:8h", "time:night", "tracks:3", "tracks:5"],
+    "category": "recording"
+  },
+  {
+    "id": "recording-flex-10h",
+    "title": "Pack Time Flex - 10h",
+    "price": "420€",
+    "description": "Volume d'heures à utiliser librement (+12€/h de nuit)",
+    "includes": ["10h de studio flexible", "Utilisation libre", "Supplément nuit : +12€/h", "Ingénieur du son"],
+    "tags": ["need:recording", "duration:flex", "flex-hours:10"],
+    "category": "recording"
+  },
+  {
+    "id": "recording-flex-20h",
+    "title": "Pack Time Flex - 20h",
+    "price": "800€",
+    "description": "Volume d'heures à utiliser librement (+12€/h de nuit)",
+    "includes": ["20h de studio flexible", "Utilisation libre", "Supplément nuit : +12€/h", "Ingénieur du son"],
+    "tags": ["need:recording", "duration:flex", "flex-hours:20"],
+    "category": "recording"
+  },
+  {
+    "id": "mix-classic-1",
+    "title": "Pack Classic Mix - 1 titre",
     "price": "120€",
-    "description": "Mixage professionnel d'une piste stéréo",
+    "description": "Mixage & mastering stéréo pour maquettes ou versions simples",
     "includes": ["Mixage stéréo professionnel", "Mastering inclus", "3 révisions", "Formats multiples"],
     "tags": ["need:mixing", "mix-type:stereo", "mix-count:1"],
     "category": "mixing"
   },
   {
-    "id": "mix-multitrack-1",
-    "title": "Mix Multipistes",
-    "price": "180€",
-    "description": "Mixage professionnel multipistes avec mastering",
+    "id": "mix-classic-3",
+    "title": "Pack Classic Mix - 3 titres",
+    "price": "340€",
+    "description": "Mixage & mastering stéréo pour 3 maquettes ou versions simples",
+    "includes": ["3 mixages stéréo professionnels", "Mastering inclus", "3 révisions par titre", "Formats multiples"],
+    "tags": ["need:mixing", "mix-type:stereo", "mix-count:3"],
+    "category": "mixing"
+  },
+  {
+    "id": "mix-classic-5",
+    "title": "Pack Classic Mix - 5 titres",
+    "price": "550€",
+    "description": "Mixage & mastering stéréo pour 5 maquettes ou versions simples",
+    "includes": ["5 mixages stéréo professionnels", "Mastering inclus", "3 révisions par titre", "Formats multiples"],
+    "tags": ["need:mixing", "mix-type:stereo", "mix-count:5"],
+    "category": "mixing"
+  },
+  {
+    "id": "mix-full-1",
+    "title": "Pack Full Mix - 1 titre",
+    "price": "200€",
+    "description": "Mixage multipiste professionnel avec mastering final",
     "includes": ["Mixage multipistes", "Mastering professionnel", "5 révisions", "Stems de mix", "Formats multiples"],
     "tags": ["need:mixing", "mix-type:multitrack", "mix-count:1"],
     "category": "mixing"
   },
   {
-    "id": "writing-improvement",
-    "title": "Perfectionnement Textes",
-    "price": "100€",
-    "description": "Amélioration et perfectionnement de vos textes existants",
+    "id": "mix-full-3",
+    "title": "Pack Full Mix - 3 titres",
+    "price": "510€",
+    "description": "Mixage multipiste professionnel avec mastering final pour 3 titres",
+    "includes": ["3 mixages multipistes", "Mastering professionnel", "5 révisions par titre", "Stems de mix", "Formats multiples"],
+    "tags": ["need:mixing", "mix-type:multitrack", "mix-count:3"],
+    "category": "mixing"
+  },
+  {
+    "id": "mix-full-5",
+    "title": "Pack Full Mix - 5 titres",
+    "price": "800€",
+    "description": "Mixage multipiste professionnel avec mastering final pour 5 titres",
+    "includes": ["5 mixages multipistes", "Mastering professionnel", "5 révisions par titre", "Stems de mix", "Formats multiples"],
+    "tags": ["need:mixing", "mix-type:multitrack", "mix-count:5"],
+    "category": "mixing"
+  },
+  {
+    "id": "master-only",
+    "title": "Pack Master Seul",
+    "price": "70€",
+    "description": "Optimisation finale de ton morceau (volume, clarté, spatialisation)",
+    "includes": ["Mastering professionnel", "Optimisation volume", "Clarté et spatialisation", "Formats multiples"],
+    "tags": ["need:mixing", "mix-type:master-only"],
+    "category": "mixing"
+  },
+  {
+    "id": "writing-coaching-4h",
+    "title": "Écriture/Topline/Coaching - 4h",
+    "price": "320€",
+    "description": "Session complète d'écriture et coaching artistique (80€/h)",
     "includes": [
-      "Analyse de vos textes",
-      "Suggestions d'amélioration",
-      "Réécriture partielle",
-      "Coaching personnalisé"
+      "Écriture complète ou topline",
+      "Coaching artistique 4h",
+      "Développement du concept",
+      "Révisions incluses",
+      "Conseils d'interprétation"
     ],
-    "tags": ["need:writing", "writing:improvement"],
+    "tags": ["need:writing", "writing:complete", "support:coached", "duration:4h"],
     "category": "writing"
   },
   {
-    "id": "writing-complete",
-    "title": "Écriture Complète + Coaching",
-    "price": "250€",
-    "description": "Écriture complète de vos textes avec coaching artistique",
-    "includes": [
-      "Écriture complète",
-      "Coaching artistique",
-      "Développement du concept",
-      "Révisions illimitées",
-      "Conseils d'interprétation"
-    ],
-    "tags": ["need:writing", "writing:complete", "support:coached", "support:guided"],
+    "id": "topline-1h",
+    "title": "Topline - 1h",
+    "price": "80€",
+    "description": "Création de topline et coaching par heure",
+    "includes": ["1h de topline/coaching", "Conseils personnalisés", "Développement créatif"],
+    "tags": ["need:writing", "writing:topline", "duration:1h"],
     "category": "writing"
   }
 ]
