@@ -4,30 +4,28 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { Phone, Mail, RotateCcw, Star, CheckCircle2, Sparkles, Headphones } from "lucide-react"
+import { Phone, Mail, RotateCcw, Star, CheckCircle2, Sparkles, Headphones, TrendingDown } from "lucide-react"
 import type { SimulatorData } from "@/types/simulator"
 import { getRecommendedOffers } from "@/lib/simulator-engine"
 import { offers } from "@/data/offers"
+import Link from "next/link"
 
 interface ResultsProps {
   data: SimulatorData
   onReset: () => void
 }
 
-// Composant RecapSection
+// Composant RecapSection (inchangé)
 function RecapSection({ data }: { data: SimulatorData }) {
-  // Fonction pour trouver le prix d'un service selon les tags générés
   const findServicePrice = (neededTags: string[]) => {
     return offers.find(offer => 
       neededTags.every(tag => offer.tags.includes(tag))
     )
   }
 
-  // Analyser les choix de l'utilisateur et trouver les prix correspondants
   const getPriceDetails = () => {
     const details = []
     
-    // 1. Analyse des besoins instrumentaux
     if (data.beatmaking?.needBeats === "yes") {
       const beatCount = data.beatmaking.beatCount || "1"
       const beatTypes = data.beatmaking.beatTypes || ["custom"]
@@ -48,7 +46,6 @@ function RecapSection({ data }: { data: SimulatorData }) {
       })
     }
 
-    // 2. Analyse des besoins d'écriture
     if (data.writing?.needWriting && data.writing.needWriting !== "no") {
       const tags = ["need:writing", `writing:${data.writing.needWriting}`]
       const service = findServicePrice(tags)
@@ -64,7 +61,6 @@ function RecapSection({ data }: { data: SimulatorData }) {
       }
     }
 
-    // 3. Analyse des besoins d'enregistrement
     if (data.recording?.needRecording === "yes") {
       const duration = data.recording.duration || "4h"
       const trackCount = data.recording.trackCount || "1"
@@ -83,7 +79,6 @@ function RecapSection({ data }: { data: SimulatorData }) {
       }
     }
 
-    // 4. Analyse des besoins de mixage
     if (data.mixing?.needMixing === "yes") {
       const mixingType = data.mixing.mixingType || "stereo"
       const mixCount = data.mixing.mixCount || "1"
@@ -102,7 +97,6 @@ function RecapSection({ data }: { data: SimulatorData }) {
       }
     }
 
-    // 5. Analyse des besoins vidéo
     if (data.video?.needVideo === "yes") {
       details.push({
         category: "Vidéo",
@@ -113,7 +107,6 @@ function RecapSection({ data }: { data: SimulatorData }) {
       })
     }
 
-    // 6. Analyse des besoins promotion
     if (data.promotion?.promotionTypes && data.promotion.promotionTypes.length > 0 && !data.promotion.promotionTypes.includes("none")) {
       details.push({
         category: "Promotion", 
@@ -148,7 +141,6 @@ function RecapSection({ data }: { data: SimulatorData }) {
       </CardHeader>
       
       <CardContent className="space-y-4">
-        {/* Liste des services */}
         <div className="space-y-3">
           {priceDetails.map((detail, index) => (
             <div key={index}>
@@ -172,7 +164,6 @@ function RecapSection({ data }: { data: SimulatorData }) {
                 </div>
               </div>
               
-              {/* Signe + entre les services */}
               {index < priceDetails.length - 1 && (
                 <div className="flex justify-center py-2">
                   <div className="bg-white/10 rounded-full w-8 h-8 flex items-center justify-center">
@@ -184,10 +175,8 @@ function RecapSection({ data }: { data: SimulatorData }) {
           ))}
         </div>
         
-        {/* Séparateur */}
         <Separator className="bg-white/10" />
         
-        {/* Total */}
         {totalPrice > 0 && (
           <div className="flex items-center justify-between p-6 bg-red-600/10 rounded-lg border border-red-600/30">
             <div>
@@ -200,7 +189,6 @@ function RecapSection({ data }: { data: SimulatorData }) {
           </div>
         )}
         
-        {/* Message d'économie pour les packs */}
         <div className="bg-gradient-to-r from-green-600/10 to-emerald-600/10 border border-green-600/30 rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-4 h-4 text-green-400" />
@@ -254,10 +242,10 @@ export function Results({ data, onReset }: ResultsProps) {
         </Button>
       </div>
 
-      {/* NOUVEAU : Section récapitulatif */}
+      {/* Section récapitulatif */}
       <RecapSection data={data} />
 
-      {/* Grille des offres */}
+      {/* Grille des offres avec prix réduits */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {recommendedOffers.map((offer, index) => (
           <div key={index} className="relative group">
@@ -274,8 +262,18 @@ export function Results({ data, onReset }: ResultsProps) {
                   </Badge>
                 </div>
               )}
+
+              {/* NOUVEAU : Badge de réduction */}
+              {offer.isDiscounted && offer.savings && (
+                <div className="absolute -top-4 right-4 z-20">
+                  <Badge className="bg-gradient-to-r from-green-600 to-green-500 text-white font-bold px-3 py-1.5 shadow-xl shadow-green-600/40 border border-green-500/30 text-xs">
+                    <TrendingDown className="w-3 h-3 mr-1" />
+                    -{offer.savings}
+                  </Badge>
+                </div>
+              )}
               
-              {/* Indicateur de popularité (optionnel) */}
+              {/* Indicateur de popularité */}
               {offer.recommended && (
                 <div className="absolute top-4 right-4">
                   <div className="relative flex h-3 w-3">
@@ -289,16 +287,46 @@ export function Results({ data, onReset }: ResultsProps) {
                 <CardTitle className="text-white text-xl lg:text-2xl font-bold tracking-tight">
                   {offer.title}
                 </CardTitle>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-500 to-red-400 bg-clip-text text-transparent">
-                    {offer.price}
-                  </span>
-                  {offer.originalPrice && (
-                    <span className="text-gray-500 line-through text-base lg:text-lg">
-                      {offer.originalPrice}
+                
+                {/* NOUVEAU : Affichage des prix avec réduction */}
+                <div className="flex items-baseline gap-3">
+                  {offer.isDiscounted && offer.originalPrice ? (
+                    <>
+                      {/* Prix barré */}
+                      <span className="text-gray-500 line-through text-lg lg:text-xl font-medium">
+                        {offer.originalPrice}
+                      </span>
+                      {/* Nouveau prix */}
+                      <span className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">
+                        {offer.price}
+                      </span>
+                      {/* Badge d'économie */}
+                      <div className="flex flex-col items-end">
+                        <span className="text-green-400 text-sm font-bold">
+                          Économie
+                        </span>
+                        <span className="text-green-300 text-xs">
+                          {offer.savings}
+                        </span>
+                      </div>
+                    </>
+                  ) : (
+                    // Prix normal
+                    <span className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-500 to-red-400 bg-clip-text text-transparent">
+                      {offer.price}
                     </span>
                   )}
                 </div>
+
+                {/* Message de réduction */}
+                {offer.isDiscounted && (
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-600/10 border border-green-600/30 rounded-full">
+                    <TrendingDown className="w-3 h-3 text-green-400" />
+                    <span className="text-green-400 text-xs font-medium">
+                      Pack économique vs services séparés
+                    </span>
+                  </div>
+                )}
               </CardHeader>
               
               <CardContent className="space-y-4 flex-grow flex flex-col">
@@ -327,17 +355,21 @@ export function Results({ data, onReset }: ResultsProps) {
 
                 {/* Boutons d'action */}
                 <div className="flex flex-col gap-3 pt-4 mt-auto">
-                  <Button className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold shadow-lg shadow-red-600/25 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300">
-                    <Phone className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
-                    Réserver cette offre
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="bg-transparent border-2 border-white/20 text-white hover:border-red-600/50 hover:bg-red-600/10 transition-all duration-300"
-                  >
-                    <Mail className="w-4 h-4 mr-2" />
-                    Être rappelé
-                  </Button>
+                  <Link href="https://jam-high.com/boutique" target="_blank" rel="noopener noreferrer">
+                    <Button className="w-full group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold shadow-lg shadow-red-600/25 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300">
+                      <Phone className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
+                      Réserver cette offre
+                    </Button>
+                  </Link>
+                  <Link href="https://jam-high.com/contact-titanium/" target="_blank" rel="noopener noreferrer">
+                    <Button 
+                      variant="outline" 
+                      className="w-full bg-transparent border-2 border-white/20 text-white hover:border-red-600/50 hover:bg-red-600/10 transition-all duration-300"
+                    >
+                      <Mail className="w-4 h-4 mr-2" />
+                      Être rappelé
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
               
@@ -383,17 +415,21 @@ export function Results({ data, onReset }: ResultsProps) {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-              <Button className="group px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold shadow-lg shadow-red-600/25 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300">
-                <Phone className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
-                01 23 45 67 89
-              </Button>
-              <Button 
-                variant="outline" 
-                className="px-6 py-3 bg-transparent border-2 border-white/20 text-white hover:border-red-600/50 hover:bg-red-600/10 transition-all duration-300"
-              >
-                <Mail className="w-4 h-4 mr-2" />
-                Envoyer un message
-              </Button>
+              <Link href="tel:+33605885812">
+                <Button className="group px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold shadow-lg shadow-red-600/25 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300">
+                  <Phone className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
+                  06 05 88 58 12
+                </Button>
+              </Link>
+              <Link href="https://jam-high.com/contact-titanium/" target="_blank" rel="noopener noreferrer">
+                <Button 
+                  variant="outline" 
+                  className="px-6 py-3 bg-transparent border-2 border-white/20 text-white hover:border-red-600/50 hover:bg-red-600/10 transition-all duration-300"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Envoyer un message
+                </Button>
+              </Link>
             </div>
           </CardContent>
           

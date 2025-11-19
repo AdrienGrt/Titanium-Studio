@@ -3,15 +3,55 @@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { useState } from "react"
 
 interface StepContactProps {
   data: any
   onUpdate: (data: any) => void
+  onSubmit?: () => void // Optionnel si vous gérez la soumission ailleurs
 }
 
-export function StepContact({ data, onUpdate }: StepContactProps) {
+export function StepContact({ data, onUpdate, onSubmit }: StepContactProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
   const handleInputChange = (field: string, value: string) => {
     onUpdate({ [field]: value })
+  }
+
+  const handleSubmit = async () => {
+    // Validation basique
+    if (!data.name || !data.email) {
+      alert('Merci de remplir les champs obligatoires (Nom et Email)')
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        if (onSubmit) onSubmit() // Appelle la fonction parent si elle existe
+        // Optionnel : réinitialiser le formulaire
+        // onUpdate({})
+      } else {
+        setSubmitStatus('error')
+        alert('Erreur lors de l\'envoi. Veuillez réessayer.')
+      }
+    } catch (error) {
+      console.error('Erreur:', error)
+      setSubmitStatus('error')
+      alert('Erreur lors de l\'envoi. Veuillez réessayer.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -126,6 +166,34 @@ export function StepContact({ data, onUpdate }: StepContactProps) {
           </div>
         </div>
       </div>
+
+      {/* Bouton d'envoi */}
+      <div className="flex justify-center">
+        <button
+          onClick={handleSubmit}
+          disabled={isSubmitting || !data.name || !data.email}
+          className="bg-red-500 hover:bg-red-600 disabled:bg-gray-500 disabled:cursor-not-allowed text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100"
+        >
+          {isSubmitting ? 'Envoi en cours...' : '📩 Envoyer ma demande'}
+        </button>
+      </div>
+
+      {/* Message de succès/erreur */}
+      {submitStatus === 'success' && (
+        <div className="bg-green-500/20 border border-green-500 rounded-lg p-4 text-center">
+          <p className="text-green-300 font-medium">
+            ✅ Merci ! Nous avons bien reçu votre demande et vous recontacterons rapidement.
+          </p>
+        </div>
+      )}
+
+      {submitStatus === 'error' && (
+        <div className="bg-red-500/20 border border-red-500 rounded-lg p-4 text-center">
+          <p className="text-red-300 font-medium">
+            ❌ Une erreur s'est produite. Veuillez réessayer ou nous appeler directement.
+          </p>
+        </div>
+      )}
 
       {/* Info contact */}
       <div className="text-center space-y-2">
