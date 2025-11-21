@@ -355,7 +355,7 @@ export function Results({ data, onReset }: ResultsProps) {
 
                 {/* Boutons d'action */}
                 <div className="flex flex-col gap-3 pt-4 mt-auto">
-                  <Link href="https://jam-high.com/boutique" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://jam-high.com/reserver-ma-session-studio/" target="_blank" rel="noopener noreferrer">
                     <Button className="w-full group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold shadow-lg shadow-red-600/25 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300">
                       <Phone className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
                       Réserver cette offre
